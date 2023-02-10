@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model JornadaDeTrabalho {
+  id     String  @id @default(uuid())
+  ativo  Boolean
+  dia    String
+  inicio String
+  fim    String
+  ordem  Int
+
+  @@map("jornadas")
+}
+
+model ConfigTable {
+  id             String  @id @default(uuid())
+  checked        Boolean
+  selectedOption String
+
+  @@map("config_table")
+}
